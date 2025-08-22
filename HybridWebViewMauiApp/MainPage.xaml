@@ -1,15 +1,104 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="HybridWebViewMauiApp.MainPage">
+             x:Class="HybridWebViewMauiApp.MainPage"
+             Title="JavaScript Engine in MAUI">
 
-    <Grid RowDefinitions="Auto,*"
-      ColumnDefinitions="*">
-        <Button Text="Send message to JavaScript"
-            Clicked="OnSendMessageButtonClicked" />
-        <HybridWebView x:Name="hybridWebView"
-                   RawMessageReceived="OnHybridWebViewRawMessageReceived"
-                   Grid.Row="1" />
-    </Grid>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            
+            <Label Text="محرك JavaScript المخفي"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="#2196F3" />
+            
+            <Label Text="نستخدم مكتبات JavaScript في الخلفية بدون واجهة ويب"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="Gray" />
+            
+            <!-- عرض النتائج -->
+            <Frame BackgroundColor="#F5F5F5" 
+                   Padding="15" 
+                   CornerRadius="10">
+                <Label x:Name="MessageLabel"
+                       Text="🔄 جاري تحميل محرك JavaScript..."
+                       FontSize="14"
+                       LineBreakMode="WordWrap"
+                       TextColor="#333333" />
+            </Frame>
+            
+            <!-- أزرار للعمليات -->
+            <Grid RowDefinitions="Auto,Auto,Auto" 
+                  ColumnDefinitions="*,*"
+                  RowSpacing="10"
+                  ColumnSpacing="10">
+                
+                <Button Text="جمع (15+25)"
+                        Grid.Row="0" Grid.Column="0"
+                        x:Name="AddButton"
+                        Clicked="OnAddClicked"
+                        BackgroundColor="#4CAF50"
+                        IsVisible="False" />
+                
+                <Button Text="طرح (50-20)"
+                        Grid.Row="0" Grid.Column="1"
+                        x:Name="SubtractButton"
+                        Clicked="OnSubtractClicked"
+                        BackgroundColor="#2196F3"
+                        IsVisible="False" />
+                
+                <Button Text="ضرب (7×8)"
+                        Grid.Row="1" Grid.Column="0"
+                        x:Name="MultiplyButton"
+                        Clicked="OnMultiplyClicked"
+                        BackgroundColor="#FF9800"
+                        IsVisible="False" />
+                
+                <Button Text="قسمة (100÷4)"
+                        Grid.Row="1" Grid.Column="1"
+                        x:Name="DivideButton"
+                        Clicked="OnDivideClicked"
+                        BackgroundColor="#9C27B0"
+                        IsVisible="False" />
+                
+                <Button Text="جذر تربيعي (√144)"
+                        Grid.Row="2" Grid.Column="0"
+                        x:Name="SqrtButton"
+                        Clicked="OnSqrtClicked"
+                        BackgroundColor="#E91E63"
+                        IsVisible="False" />
+                
+                <Button Text="معامل (5!)"
+                        Grid.Row="2" Grid.Column="1"
+                        x:Name="FactorialButton"
+                        Clicked="OnFactorialClicked"
+                        BackgroundColor="#795548"
+                        IsVisible="False" />
+            </Grid>
+            
+            <Button Text="🎵 مثال موسيقى"
+                    x:Name="MusicButton"
+                    Clicked="OnMusicExample"
+                    BackgroundColor="#FF5722"
+                    HeightRequest="50"
+                    IsVisible="False" />
+            
+            <Button Text="📊 معالجة مصفوفة"
+                    x:Name="ArrayButton"
+                    Clicked="OnArrayProcess"
+                    BackgroundColor="#607D8B"
+                    HeightRequest="50"
+                    IsVisible="False" />
+            
+            <!-- HybridWebView مخفي تماماً - يعمل كمحرك JavaScript فقط -->
+            <HybridWebView x:Name="hybridWebView"
+                           RawMessageReceived="OnHybridWebViewRawMessageReceived"
+                           HeightRequest="1"
+                           IsVisible="False"
+                           Opacity="0" />
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
